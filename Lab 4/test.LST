@@ -1,0 +1,116 @@
+A51 MACRO ASSEMBLER  TEST                                                                 12/06/2016 23:47:52 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02b
+OBJECT MODULE PLACED IN test.OBJ
+ASSEMBLER INVOKED BY: D:\Keil C51\C51\BIN\A51.EXE test.asm SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1         ORG 0000H
+0000 020050            2             LJMP MAIN
+000B                   3             ORG 000BH                       ;¶¨Ê±Æ÷0µÄÖÐ¶ÏÏòÁ¿µØÖ·
+000B 0176              4             AJMP TIME0                      ;Ìø×ªµ½ÕæÕµÄ¶¨Ê±Æ÷³ÌÐò´¦
+0050                   5             ORG 0050H
+0050                   6     MAIN:
+0050 753000            7             MOV 30H,#00H            ;Èí¼þ¼ÆÊÆ÷Ô¤Çå0,¼ÆÊ·ÖÆµÎª1s
+0053 753100            8             MOV 31H,#00H            ;Èí¼þ¼ÆÊÆ÷Ô¤Çå0,¼ÆµÄÊÇÕûÃëÊ
+0056 758901            9             MOV TMOD,#00000001B ;¶¨Ê±/¼ÆÊÆ÷0¹¤×÷ÓÚ·½Ê½1
+0059 758C3C           10             MOV TH0,#3CH 
+005C 758AB0           11             MOV TL0,#0B0H           ;Ô¤ÖÃ15536£¬¼ÆÊ±0.05s
+005F D2AF             12             SETB EA                         ;¿ª×ÜÖÐ¶ÏÔÊÐí
+0061 D2A9             13             SETB ET0                        ;¿ª¶¨Ê±/¼ÆÊÆ÷0ÔÊÐí
+0063 D28C             14             SETB TR0                        ;¶¨Ê±/¼ÆÊÆ÷0¿ªÊ¼ÔËÐÐ
+0065 75A0FF           15             MOV P2,#0FFH            ;¹ØP2ËùÓÐµÆ
+0068 D2B0             16               SETB  P3.0 
+006A D2B1             17               SETB  P3.1            ;¹ØP3.0ºÍP3.1¶ÔÓ¦P22µÄµÆ
+006C B2A1             18               CPL  P2.1  
+006E B2A4             19               CPL  P2.4
+0070 B2A5             20               CPL  P2.5
+0072 B2B0             21               CPL  P3.0             ;¸ù¾Ý½»Í¨µÆÂß¼­ÉèÖÃµÀÂ·AÍ¨ÐÐ
+0074 80FE             22         SJMP $                              ;Ô­µØÌø×ªµÈ´¶¨Ê±ÖÐ¶Ï
+                      23             
+0076                  24     TIME0:                                  ;¶¨Ê±Æ÷0µÄÖÐ¶Ï´¦Àí³ÌÐò
+0076 C0E0             25             PUSH ACC
+0078 C0D0             26             PUSH PSW                        ;½«PSWºÍACCÍÆÈë¶ÑÕ»±£»¤
+007A 0530             27             INC 30H             ;30H++
+007C E530             28             MOV A,30H
+007E B41443           29         CJNE A,#20,T_RET    ;¼ÆËãÊÇ·ñµ½ÕûÃë£¿Ã»µ½ÔòÌø×ªÔÙ¼ÆÊ±
+0081 0531             30             INC 31H                         ;µ½ÁËÕûÃë£¬Ôò31H++
+0083 753000           31             MOV 30H,#00H            ;31H++ºóÇåÁã30H£¬ÖØÐÂ¼ÆÊ
+                      32             
+0086 E531             33             MOV A,31H
+0088 B41E0F           34             CJNE A,#30,T_NEXT32 ;31Hµ¥ÔªÖÐµÄÖµµ½ÁË30SÁËÂð? Ã»µ½£¬Ìø×ªµ½T_NEXT32ÅÐ¶ÏÏÂÒ»¸öÊ×Ö¼ÆÊ
+                             Æ÷µÄÖµ
+008B 75A0FF           35         MOV P2,#0FFH                
+008E D2B0             36               SETB  P3.0            
+0090 D2B1             37               SETB  P3.1            ;¹ØËùÓÐµÆ
+0092 B2A3             38               CPL  P2.3
+0094 B2A0             39               CPL  P2.0
+0096 B2A6             40               CPL  P2.6
+0098 B2B0             41               CPL  P3.0                     ;»ÆµÆ½×¶Î
+                      42         
+009A                  43     T_NEXT32:
+009A B4230F           44               CJNE A,#35,T_NEXT33;31Hµ¥ÔªÖÐµÄÖµµ½ÁË35SÁËÂð? Ã»µ½£¬Ìø×ªµ½T_NEXT33ÅÐ¶ÏÏÂÒ»¸öÊ×Ö¼Æ
+                             ÊÆ÷µÄÖµ
+009D 75A0FF           45               MOV P2,#0FFH          
+00A0 D2B0             46               SETB  P3.0
+00A2 D2B1             47               SETB  P3.1            ;¹ØËùÓÐµÆ
+00A4 B2A2             48               CPL  P2.2
+00A6 B2A0             49               CPL  P2.0
+00A8 B2A7             50               CPL  P2.7
+00AA B2B1             51               CPL  P3.1                     ;¸ù¾Ý½»Í¨µÆÂß¼­ÉèÖÃµÀÂ·AÍ¨ÐÐ
+                      52              
+00AC                  53     T_NEXT33:
+00AC B4410F           54               CJNE A,#65,T_NEXT34;31Hµ¥ÔªÖÐµÄÖµµ½ÁË65SÁËÂð? Ã»µ½£¬Ìø×ªµ½T_NEXT34ÅÐ¶ÏÏÂÒ»¸öÊ×Ö¼Æ
+                             ÊÆ÷µÄÖµ
+00AF 75A0FF           55               MOV P2,#0FFH          
+A51 MACRO ASSEMBLER  TEST                                                                 12/06/2016 23:47:52 PAGE     2
+
+00B2 D2B0             56               SETB  P3.0
+00B4 D2B1             57               SETB  P3.1            ;¹ØËùÓÐµÆ
+00B6 B2A3             58               CPL  P2.3
+00B8 B2A0             59               CPL  P2.0
+00BA B2A6             60               CPL  P2.6
+00BC B2B0             61               CPL  P3.0                     ;»ÆµÆ½×¶Î
+                      62     
+00BE                  63     T_NEXT34:
+00BE B44603           64             CJNE A,#70,T_RET        ;31Hµ¥ÔªÖÐµÄÖµµ½ÁË70SÁËÂð? Ã»µ½£¬Ìø×ªµ½T_RETÖØÖÃ¶¨Ê±
+00C1 020050           65         LJMP MAIN                   ;µ½ÁË70s,Ìø»ØMAIN³ÌÐò£¬ÊµÏÖÑ­»·
+00C4                  66     T_RET:
+00C4 758C3C           67             MOV TH0,#3CH
+00C7 758AB0           68             MOV TL0,#0B0H           ;ÖØÖÃ¶¨Ê±³£Ê
+00CA D0D0             69             POP PSW
+00CC D0E0             70             POP ACC
+00CE 32               71             RETI                            ;ÖÐ¶Ï·µ»Ø
+                      72             END 
+A51 MACRO ASSEMBLER  TEST                                                                 12/06/2016 23:47:52 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+ACC. . . . . . . .  D ADDR   00E0H   A   
+EA . . . . . . . .  B ADDR   00A8H.7 A   
+ET0. . . . . . . .  B ADDR   00A8H.1 A   
+MAIN . . . . . . .  C ADDR   0050H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+PSW. . . . . . . .  D ADDR   00D0H   A   
+TH0. . . . . . . .  D ADDR   008CH   A   
+TIME0. . . . . . .  C ADDR   0076H   A   
+TL0. . . . . . . .  D ADDR   008AH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR0. . . . . . . .  B ADDR   0088H.4 A   
+T_NEXT32 . . . . .  C ADDR   009AH   A   
+T_NEXT33 . . . . .  C ADDR   00ACH   A   
+T_NEXT34 . . . . .  C ADDR   00BEH   A   
+T_RET. . . . . . .  C ADDR   00C4H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

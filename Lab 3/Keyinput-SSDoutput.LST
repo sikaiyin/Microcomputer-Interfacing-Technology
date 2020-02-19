@@ -1,0 +1,79 @@
+A51 MACRO ASSEMBLER  KEYINPUT_SSDOUTPUT                                                   11/02/2016 14:43:04 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02b
+OBJECT MODULE PLACED IN Keyinput-SSDoutput.OBJ
+ASSEMBLER INVOKED BY: D:\Keil C51\C51\BIN\A51.EXE Keyinput-SSDoutput.asm SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1             ORG     0000H       ;³ÌÐò´Ó´ËµØÖ·¿ªÊ¼ÔËÐÐ
+0000 020030            2             LJMP    MAIN        ;Ìø×ªµ½ MAIN ³ÌÐò´¦
+                       3     
+0030                   4             ORG     030H        ;MAIN ´Ó030H´¦¿ªÊ¼
+0030                   5     MAIN:
+                       6     ;*************Add your code below*************************************  
+0030 7590FF            7             MOV     P1,#0FFH
+0033 E590              8             MOV     A,P1
+0035 F4                9             CPL     A
+0036 900061           10             MOV     DPTR,#XSQR_TABLE
+0039 93               11             MOVC    A,@A+DPTR
+003A 900051           12             MOV     DPTR,#TAB
+003D 93               13             MOVC    A,@A+DPTR
+003E F580             14             MOV     P0,A
+0040 1144             15             ACALL    DELAY
+                      16                     
+                      17     ;*********************************************************************
+0042 0130             18             AJMP    MAIN        ;Ìø×ªµ½Ö÷³ÌÐò´¦
+                      19     
+                      20     
+                      21     
+0044                  22     DELAY:  
+0044 7D02             23             MOV     R5,#02H    ;½«Á¢¼´Ê´«¸ø¼Ä´æÆ÷R5
+0046                  24     F3:     
+0046 7EFF             25             MOV     R6,#0FFH
+0048                  26     F2:     
+0048 7FFF             27             MOV     R7,#0FFH
+004A                  28     F1:     
+004A DFFE             29             DJNZ    R7,F1          ;ÈôÎª0³ÌÐòÏòÏÂÖ´ÐÐ£¬Èô²»Îª0³ÌÐòÌø×ªµ½
+004C DEFA             30             DJNZ    R6,F2
+004E DDF6             31             DJNZ    R5,F3
+0050 22               32             RET
+                      33     
+                      34     ;Æß¶ÎÊÂëÏÔ¹ÜÏÔÊ¾Ê×Ö±àÂë(¶ÔÓ¦0~F)
+                      35     ;TAB: DB 3Fh,06h,5Bh,4Fh,66h,6Dh,7Dh,07h,7Fh,6Fh,77h,7Ch,39h,5Eh,79h,71h                ;¹²
+                             Òõ¼«Æß¶ÎÊÂëÏÔ¹Ü
+0051 C0F9A4B0         36     TAB: DB 0C0h,0F9h,0A4h,0B0h,99h,92h,82h,0F8h,80h,90h,88h,83h,0C6h,0A1h,86h,8Eh  ;¹²Ñô¼«Æß¶Î
+                             ÊÂëÏÔ¹Ü
+0055 999282F8                
+0059 80908883                
+005D C6A1868E                
+0061                  37     XSQR_TABLE:
+0061 00010409         38              DB     0,1,4,9,16,25,36,49,64,81,100,121,144,169,196,225
+0065 10192431                
+0069 40516479                
+006D 90A9C4E1                
+                      39             END
+A51 MACRO ASSEMBLER  KEYINPUT_SSDOUTPUT                                                   11/02/2016 14:43:04 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY. . . . . . .  C ADDR   0044H   A   
+F1 . . . . . . . .  C ADDR   004AH   A   
+F2 . . . . . . . .  C ADDR   0048H   A   
+F3 . . . . . . . .  C ADDR   0046H   A   
+MAIN . . . . . . .  C ADDR   0030H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+TAB. . . . . . . .  C ADDR   0051H   A   
+XSQR_TABLE . . . .  C ADDR   0061H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

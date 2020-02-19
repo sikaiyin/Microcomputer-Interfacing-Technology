@@ -1,0 +1,26 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+D:\快盘\工作\课程相关\微机原理及接口技术\课件\2015\Part 3 - Demostrations\Demo4TimerInterruptMethod4LEDFlash\jiangetest.uvproj
+Project File Date:  11/12/2014
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling STARTUP.A51...
+assembling test.asm...
+linking...
+*** WARNING L5: CODE SPACE MEMORY OVERLAP
+    FROM:    0000H
+    TO:      0002H
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?C_START
+    MODULE:  STARTUP.obj (?C_STARTUP)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?C_START
+    MODULE:  STARTUP.obj (?C_STARTUP)
+    ADDRESS: 00B9H
+Program Size: data=9.0 xdata=0 code=190
+creating hex file from "jiangetest"...
+"jiangetest" - 0 Error(s), 3 Warning(s).
